@@ -1,44 +1,15 @@
-# Use Alpine Linux
-FROM alpine:edge
+FROM ubuntu:xenial
 
-# Maintainer
 MAINTAINER Andrei S <whyte624@gmail.com>
 
-RUN	apk update && \
-	apk upgrade && \
-	apk add --update --no-cache\
-	    bash \ 
-	    gawk \
-	    sed \ 
-	    grep \
-	    bc \
-	    coreutils \
-	    git \
-	    apache2 \
-	    curl \
-	    acl \
-	    nano \
-	    openssh \
-	    php7 \
-		php7-curl \
-		php7-intl \
-		php7-mbstring \
-		php7-gd \
-		php7-gmp \
-		php7-bcmath \
-		php7-pdo_mysql \
-		php7-dom \
-		php7-zip \
-		php7-json \
-		php7-phar \
-		php7-xml \
-		php7-tokenizer \
-		php7-xmlwriter \
-		php7-ctype \
-		php7-zlib \
-		php7-mcrypt \
-		mysql \
-		mysql-client
+RUN apt-get update
+RUN apt-get install --assume-yes software-properties-common python-software-properties nano git curl acl
+RUN apt-get install --assume-yes locales
+RUN locale-gen en_US.UTF-8
+RUN export LANG=en_US.UTF-8
+RUN LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -y
+RUN apt-get update
+RUN apt-get install --assume-yes apache2 php7.1 php7.1-curl php7.1-intl php7.1-mbstring php7.1-gd php7.1-gmp php7.1-bcmath php7.1-mysql php7.1-dom php7.1-zip
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 ENV SYMFONY_ENV test
