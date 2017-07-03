@@ -6,7 +6,13 @@ MAINTAINER Andrei S <whyte624@gmail.com>
 
 RUN	apk update && \
 	apk upgrade && \
-	apk add --update \
+	apk add --update --no-cache\
+	    bash \ 
+	    gawk \
+	    sed \ 
+	    grep \
+	    bc \
+	    coreutils \
 	    git \
 	    apache2 \
 	    curl \
@@ -30,6 +36,7 @@ RUN	apk update && \
 		php7-xmlwriter \
 		php7-ctype \
 		php7-zlib \
+		php7-mcrypt \
 		mysql \
 		mysql-client
 
