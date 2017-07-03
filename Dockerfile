@@ -22,7 +22,7 @@ RUN { \
         echo mysql-community-server mysql-community-server/remove-test-db \
             select true; \
     } | debconf-set-selections \
-    && apt-get update && apt-get install -y mysql-server
+    && apt-get update && apt-get install -y mysql-server mysql-client
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 ENV SYMFONY_ENV test
