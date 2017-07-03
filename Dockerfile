@@ -21,5 +21,8 @@ RUN	apk update && \
 		php7-pdo_mysql \
 		php7-dom \
 		php7-zip \
+		php7-json \
+		php7-phar \
+		php7-xml \
 		mysql \
 		mysql-client
