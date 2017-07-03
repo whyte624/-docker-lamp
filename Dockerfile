@@ -24,5 +24,7 @@ RUN	apk update && \
 		php7-json \
 		php7-phar \
 		php7-xml \
+		php7-tokenizer \
+		php7-xmlwriter \
 		mysql \
 		mysql-client
