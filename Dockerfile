@@ -11,6 +11,8 @@ RUN	apk update && \
 	    apache2 \
 	    curl \
 	    acl \
+	    nano \
+	    openssh \
 	    php7 \
 		php7-curl \
 		php7-intl \
@@ -27,5 +29,13 @@ RUN	apk update && \
 		php7-tokenizer \
 		php7-xmlwriter \
 		php7-ctype \
+		php7-zlib \
 		mysql \
 		mysql-client
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+ENV SYMFONY_ENV test
+COPY composer.json /composer-cache/composer.json
+COPY composer.lock /composer-cache/composer.lock
+RUN cd /composer-cache && composer install --no-interaction --no-scripts --no-autoloader
+RUN rm -rf /composer-cache 
