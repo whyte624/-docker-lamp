@@ -16,9 +16,9 @@ RUN { \
         echo mysql-community-server mysql-community-server/data-dir \
             select ''; \
         echo mysql-community-server mysql-community-server/root-pass \
-            password 'secret'; \
+            password ''; \
         echo mysql-community-server mysql-community-server/re-root-pass \
-            password 'secret'; \
+            password ''; \
         echo mysql-community-server mysql-community-server/remove-test-db \
             select true; \
     } | debconf-set-selections \
