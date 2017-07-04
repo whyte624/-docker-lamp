@@ -3,7 +3,7 @@ FROM ubuntu:xenial
 MAINTAINER Andrei S <whyte624@gmail.com>
 
 RUN apt-get update
-RUN apt-get install --assume-yes software-properties-common python-software-properties nano git curl acl
+RUN apt-get install --assume-yes software-properties-common python-software-properties nano git curl acl libxrender1
 RUN apt-get install --assume-yes locales
 RUN locale-gen en_US.UTF-8
 RUN export LANG=en_US.UTF-8
@@ -23,6 +23,9 @@ RUN { \
             select true; \
     } | debconf-set-selections \
     && apt-get update && apt-get install -y mysql-server mysql-client
+
+RUN echo "[mysqld]" >> /etc/mysql/my.cnf
+RUN echo "sql_mode=1" >> /etc/mysql/my.cnf
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 ENV SYMFONY_ENV test
